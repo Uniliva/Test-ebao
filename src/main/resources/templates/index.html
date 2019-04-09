@@ -1,36 +1,111 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Teste Ebao</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Teste Ebao</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+
 </head>
 <body>
-<table>
-    <thead>
-        <tr>
-            <th> ID </th>
-            <th> Create Date </th>
-            <th> Amount </th>
-            <th> Due Date </th>
-            <th> Adjustment ID </th>
-            <th> Adjustment Status </th>
-            <th> Adjustment Create Date </th>
-        </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${bills.empty}">
-            <td colspan="2"> No Books Available </td>
-        </tr>
-        <tr th:each="bill : ${bills}">
-            <td><span th:text="${bill.id}"> Title </span></td>
-            <td><span th:text="${bill.createDate}"> createDate </span></td>
-            <td><span th:text="${bill.amount}"> .amount </span></td>
-            <td><span th:text="${bill.dueDate}"> dueDate </span></td>
-            <td><span th:text="${bill.idAdjustment}"> idAdjustment </span></td>
-            <td><span th:text="${bill.status}"> status </span></td>
-            <td><span th:text="${bill.adjustmentDate}"> adjustmentDate </span></td>
-        </tr>
-    </tbody>
-</table>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand">Test</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form action="#" th:action="@{/filter}" th:object="${filterDto}" method="post">
+					<div class="row">
+						<div class='col-sm-4'>
+							<div class="form-group">
+								Status Bill: 
+								<select th:field="*{status}" class="form-control">
+								<option th:each="option : ${statusOptions}" th:value="${option}" th:text="${option}" 
+								th:selected="${option == filtroStatus}"></option>
+								</select>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<div class="form-group">
+								Date Adjustment:
+								<div class="form-group">
+									<input class="datepicker"  th:field="*{date}" data-date-format="mm/dd/yyyy">
+								</div>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<div class="form-group">
+								<br/>
+								<div class="form-group">
+									<input type="submit" value="search" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Create Date</th>
+							<th>Amount</th>
+							<th>Due Date</th>
+							<th>Adjustment ID</th>
+							<th>Status</th>
+							<th>Adjustment Create Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${#lists.isEmpty(bills)}">
+							<td colspan="2">No Bill Available</td>
+						</tr>
+						<tr th:each="bill : ${bills}">
+							<td><span th:text="${bill.id}"> ID </span></td>
+							<td><span th:text="${bill.createDate}"> Create Date </span></td>
+							<td><span th:text="${bill.amount}"> Amount </span></td>
+							<td><span th:text="${bill.dueDate}"> Due Date </span></td>
+							<td><span th:text="${bill.idAdjustment}"> Adjustment
+									ID </span></td>
+							<td><span th:text="${bill.status}"> Status </span></td>
+							<td><span th:text="${bill.adjustmentDate}">Adjustment
+									Create Date</span></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript">
+		$('.datepicker').datepicker({
+			format : 'dd-mm-yyyy'
+		});
+	</script>
 </body>
 </html>

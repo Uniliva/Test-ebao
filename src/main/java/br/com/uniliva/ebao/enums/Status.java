@@ -5,7 +5,7 @@ public enum Status {
 	
 	private String descricao;
 
-	Status(String descricao) {
+	private Status(String descricao) {
         this.descricao = descricao;
     }
 
