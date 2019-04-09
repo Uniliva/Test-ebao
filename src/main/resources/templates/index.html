@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teste Ebao</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Create Date </th>
+            <th> Amount </th>
+            <th> Due Date </th>
+            <th> Adjustment ID </th>
+            <th> Adjustment Status </th>
+            <th> Adjustment Create Date </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${bills.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="bill : ${bills}">
+            <td><span th:text="${bill.id}"> Title </span></td>
+            <td><span th:text="${bill.createDate}"> createDate </span></td>
+            <td><span th:text="${bill.amount}"> .amount </span></td>
+            <td><span th:text="${bill.dueDate}"> dueDate </span></td>
+            <td><span th:text="${bill.idAdjustment}"> idAdjustment </span></td>
+            <td><span th:text="${bill.status}"> status </span></td>
+            <td><span th:text="${bill.adjustmentDate}"> adjustmentDate </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
