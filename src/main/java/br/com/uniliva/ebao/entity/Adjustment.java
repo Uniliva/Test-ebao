@@ -16,11 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Repository;
+
 import br.com.uniliva.ebao.enums.Status;
-import lombok.Data;
 
 @Entity(name = "TBL_ADJUSTMENT")
-@Data
+@Repository
 public class Adjustment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,8 +41,9 @@ public class Adjustment implements Serializable {
 	@Column(name = "CREATED_TIME")
 	private Date createDate;
 	
-	public Adjustment(Long id, Bill bill, Status status, Date createDate) {
-		this.id = id;
+	
+	
+	public Adjustment(Bill bill, Status status, Date createDate) {
 		this.bill = bill;
 		this.status = status;
 		this.createDate = createDate;

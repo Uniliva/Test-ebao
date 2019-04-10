@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Teste Ebao</title>
+<title>Teste - EBAO</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
@@ -15,7 +15,7 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand">Test</a>
+				<a class="navbar-brand">Teste - Boleto : Uniliva</a>
 			</div>
 		</div>
 	</nav>
@@ -23,30 +23,37 @@
 
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form action="#" th:action="@{/filter}" th:object="${filterDto}" method="post">
+				<form action="#" th:action="@{/boletos}" th:object="${filterDto}"
+					method="GET">
 					<div class="row">
-						<div class='col-sm-4'>
+						<div class='col-sm-3'>
 							<div class="form-group">
-								Status Bill: 
-								<select th:field="*{status}" class="form-control">
-								<option th:each="option : ${statusOptions}" th:value="${option}" th:text="${option}" 
-								th:selected="${option == filtroStatus}"></option>
+								Status do boleto: <select th:field="*{status}"
+									class="form-control">
+									<option th:each="option : ${statusOptions}"
+										th:value="${option}" th:text="${option}"
+										th:selected="${option == filtroStatus}"></option>
 								</select>
 							</div>
 						</div>
-						<div class='col-sm-4'>
+						<div class='col-sm-3'>
 							<div class="form-group">
-								Date Adjustment:
+								Data do ajuste:
 								<div class="form-group">
-									<input class="datepicker"  th:field="*{date}" data-date-format="mm/dd/yyyy">
+									<input class="datepicker" th:field="*{date}"
+										data-date-format="mm/dd/yyyy">
 								</div>
 							</div>
 						</div>
 						<div class='col-sm-4'>
 							<div class="form-group">
-								<br/>
+								<br />
 								<div class="form-group">
-									<input type="submit" value="search" />
+									<button type="submit" class="btn btn-default ">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+										Buscar
+									</button>
+
 								</div>
 							</div>
 						</div>
@@ -55,8 +62,16 @@
 			</div>
 		</div>
 
+		
 
-
+		<div th:if="${#lists.isEmpty(bills)}">
+			<div class="alert alert-danger" role="alert"> Nenhum boleto encontrado</div>
+		</div>
+		<div th:unless="${#lists.isEmpty(bills)}">
+		<div class="alert alert-warning" role="alert">
+			<span th:text="${#lists.size(bills)}"></span> boletos encontrados
+		</div>
+		
 		<div class="panel panel-default">
 			<div class="panel-body">
 
@@ -64,35 +79,34 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Create Date</th>
-							<th>Amount</th>
-							<th>Due Date</th>
-							<th>Adjustment ID</th>
+							<th>Data Criação</th>
+							<th>Valor</th>
+							<th>Data Vencimento</th>
+							<th>Ajuste ID</th>
 							<th>Status</th>
-							<th>Adjustment Create Date</th>
+							<th>Data do Ajuste</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:if="${#lists.isEmpty(bills)}">
-							<td colspan="2">No Bill Available</td>
-						</tr>
+
 						<tr th:each="bill : ${bills}">
-							<td><span th:text="${bill.id}"> ID </span></td>
-							<td><span th:text="${bill.createDate}"> Create Date </span></td>
-							<td><span th:text="${bill.amount}"> Amount </span></td>
-							<td><span th:text="${bill.dueDate}"> Due Date </span></td>
-							<td><span th:text="${bill.idAdjustment}"> Adjustment
-									ID </span></td>
-							<td><span th:text="${bill.status}"> Status </span></td>
-							<td><span th:text="${bill.adjustmentDate}">Adjustment
-									Create Date</span></td>
+							<td><span th:text="${bill.id}"></span></td>
+							<td><span th:text="${#dates.format(bill.createDate, 'dd-MM-yyyy')}"></span></td>
+							<td><span th:text="${bill.amount}"></span></td>
+							<td><span th:text="${#dates.format(bill.dueDate, 'dd-MM-yyyy')}"></span></td>
+							<td><span th:text="${bill.idAdjustment}"> </span></td>
+							<td><span th:text="${bill.status}"></span></td>
+							<td><span th:text="${#dates.format(bill.adjustmentDate, 'dd-MM-yyyy')}"></span></td>
 						</tr>
 					</tbody>
 				</table>
 
 			</div>
 		</div>
+		
+		</div>
 
+		
 	</div>
 
 

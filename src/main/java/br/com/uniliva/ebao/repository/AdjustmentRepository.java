@@ -12,6 +12,7 @@ import br.com.uniliva.ebao.enums.Status;
 
 @Repository
 public interface AdjustmentRepository extends  JpaRepository<Adjustment, Long>  {
+	List<Adjustment> findByCreateDate(Date date);
 	List<Adjustment> findByStatus(Status status);
 	@Query("SELECT adj FROM  TBL_ADJUSTMENT adj WHERE adj.status =  ?1 and adj.createDate = ?2")
 	List<Adjustment> findByFilters(Status status, Date Date);

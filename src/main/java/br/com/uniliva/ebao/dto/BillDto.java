@@ -3,7 +3,6 @@ package br.com.uniliva.ebao.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import br.com.uniliva.ebao.entity.Adjustment;
 import br.com.uniliva.ebao.enums.Status;
 
 
@@ -33,13 +32,6 @@ public class BillDto implements Serializable{
 		this.status = status;
 		this.adjustmentDate = adjustmentDate;
 		return this;
-	}
-	
-	public br.com.uniliva.ebao.entity.Bill toBill(){
-		return new br.com.uniliva.ebao.entity.Bill(this.createDate, this.amount, this.dueDate);		
-	}
-	public Adjustment toAdjustment(){
-		return new Adjustment(this.idAdjustment, this.toBill(), this.status, this.adjustmentDate);		
 	}
 
 	public Long getId() {
