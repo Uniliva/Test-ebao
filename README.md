@@ -1,16 +1,16 @@
 # Test-ebao
 
-Teste feito utilizando Spring boot / hibernate / H2, essas tecnologias foram escolhidas para agilizar o desenvolviemnto e facilitar o teste, pelos avaliadores.
+Teste feito utilizando Spring boot / hibernate / H2, essas tecnologias foram escolhidas para agilizar o desenvolviemento e facilitar o teste, pelos avaliadores.
 
 ### Executar o projeto
 
-Para executar o projeto façao clone do projeto
+Para executar o projeto façao clone do projeto e importe:
 
 > utilizando o STS - Sprint tools. 
 
 * clique no projeto botao direito no projeto e clique em run as spring boot
 
-> No eclipse
+>  utilizando o eclipse
 
 * Vá no menu  Run > Run Configuration > clique em Java Aplication
 * Clique no icone New Configurarion para adicionar outra forma de execução 
