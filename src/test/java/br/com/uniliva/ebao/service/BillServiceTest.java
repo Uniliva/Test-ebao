@@ -54,6 +54,30 @@ public class BillServiceTest {
 		
 	}
 	
+	/* @Test
+	public void getMapBillTest() throws ParseException {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+		Bill bill = new Bill(formatter.parse("01-01-1999"), 100, formatter.parse("05-01-1999"));
+		Adjustment adjustment = new Adjustment(bill, Status.ATIVO, formatter.parse("10-01-1999"));
+		adjustmentRepository.save(adjustment);
+		
+		Adjustment adjustment2 = new Adjustment(bill, Status.CANCELADO, formatter.parse("03-01-1999"));
+		adjustmentRepository.save(adjustment2);
+		
+		
+		
+		
+		FilterDto  filter = new FilterDto("TODOS","");
+
+		 Map<Long,List<BillDto>> mapBillDtos = sevice.getMapBill(filter);
+
+		
+		assertEquals(1, mapBillDtos.size());
+		assertEquals(2,mapBillDtos.get(bill.getId()).size());
+	} */
+	
 	@After
 	public void cleanDataBase () {
 		adjustmentRepository.deleteAll();

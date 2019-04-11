@@ -23,6 +23,7 @@ Para executar o projeto façao clone do projeto e importe:
 Para acessar a aplicação utilize:
 ```
 http://localhost:8085/boletos
+http://localhost:8085/boletos-v2
 ```
 
 

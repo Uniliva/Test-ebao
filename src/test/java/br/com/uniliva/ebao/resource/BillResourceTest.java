@@ -24,9 +24,16 @@ public class BillResourceTest {
 	    private TestRestTemplate restTemplate;
 
 	    @Test
-	    public void greetingShouldReturnDefaultMessage() throws Exception {
+	    public void ShouldReturnTitle() throws Exception {
 	        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/boletos",
 	                String.class)).contains("Uniliva");
 	    }
+	    
+	    @Test
+	    public void ShouldReturnTitleV2()  throws Exception {
+	        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/boletos-v2",
+	                String.class)).contains("Uniliva");
+	    }
+
 
 }
